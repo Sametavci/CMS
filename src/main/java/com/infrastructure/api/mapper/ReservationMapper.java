@@ -6,7 +6,7 @@ import com.infrastructure.api.dto.ReservationDTO;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("apiReservationMapper")
 @NoArgsConstructor
 public class ReservationMapper implements BaseMapper<DomainReservation, ReservationDTO>
 {

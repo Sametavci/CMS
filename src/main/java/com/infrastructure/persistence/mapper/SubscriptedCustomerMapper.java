@@ -4,7 +4,7 @@ import com.domain.models.DomainSubscriptedCustomer;
 import com.infrastructure.persistence.entities.SubscriptedCustomer;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("persistenceSubscriptedCustomerMapper")
 public class SubscriptedCustomerMapper implements BaseMapper<SubscriptedCustomer, DomainSubscriptedCustomer> {
 
     @Override

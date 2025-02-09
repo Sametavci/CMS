@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IMovieJpaRepository extends BaseJpaRepository<Movie, Long>, JpaSpecificationExecutor<Movie> {
+public interface IMovieJpaRepository extends BaseJpaRepository<Movie, Long> {
 Movie findByTitle(String title);
 }

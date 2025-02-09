@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
-@Component
+@Component("apiMovieMapper")
 @NoArgsConstructor
 public class MovieMapper implements BaseMapper<DomainMovie, MovieDTO> {
     private SessionMapper sessionMapper;

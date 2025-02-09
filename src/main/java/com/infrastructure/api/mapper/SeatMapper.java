@@ -6,7 +6,7 @@ import com.infrastructure.api.dto.SeatDTO;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("apiSeatMapper")
 @NoArgsConstructor
 public class SeatMapper implements BaseMapper<DomainSeat, SeatDTO> {
 

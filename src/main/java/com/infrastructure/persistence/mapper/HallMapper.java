@@ -4,7 +4,7 @@ import com.domain.models.DomainHall;
 import com.infrastructure.persistence.entities.Hall;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("persistenceHallMapper")
 public class HallMapper implements BaseMapper<Hall, DomainHall> {
 
     @Override

@@ -4,7 +4,7 @@ import com.domain.models.DomainCustomer;
 import com.infrastructure.persistence.entities.Customer;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("persistenceCustomerMapper")
 public class CustomerMapper implements BaseMapper<Customer, DomainCustomer> {
 
     @Override

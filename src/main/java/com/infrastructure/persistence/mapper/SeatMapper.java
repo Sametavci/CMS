@@ -4,7 +4,7 @@ import com.domain.models.DomainSeat;
 import com.infrastructure.persistence.entities.Seat;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("persistenceSeatMapper")
 public class SeatMapper implements BaseMapper<Seat, DomainSeat> {
 
     @Override

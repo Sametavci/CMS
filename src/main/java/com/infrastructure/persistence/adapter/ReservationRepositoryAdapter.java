@@ -5,6 +5,7 @@ import com.domain.ports.repositorys.IReservationRepository;
 import com.infrastructure.persistence.entities.Reservation;
 import com.infrastructure.persistence.mapper.ReservationMapper;
 import com.infrastructure.persistence.repositorys.IReservationJpaRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
+@Repository
 public class ReservationRepositoryAdapter implements IReservationRepository {
 
     private final IReservationJpaRepository reservationJpaRepository;

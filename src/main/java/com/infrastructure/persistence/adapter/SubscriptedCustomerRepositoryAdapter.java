@@ -5,6 +5,7 @@ import com.domain.ports.repositorys.ISubscriptionCustomerRepository;
 import com.infrastructure.persistence.entities.SubscriptedCustomer;
 import com.infrastructure.persistence.mapper.SubscriptedCustomerMapper;
 import com.infrastructure.persistence.repositorys.ISubscriptionCustomerJpaRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
+@Repository
 public class SubscriptedCustomerRepositoryAdapter implements ISubscriptionCustomerRepository {
 
     private final ISubscriptionCustomerJpaRepository subscriptionCustomerJpaRepository;

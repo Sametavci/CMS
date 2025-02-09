@@ -4,7 +4,7 @@ import com.domain.models.DomainSession;
 import com.infrastructure.persistence.entities.Session;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("persistenceSessionMapper")
 public class SessionMapper implements BaseMapper<Session, DomainSession> {
 
     @Override

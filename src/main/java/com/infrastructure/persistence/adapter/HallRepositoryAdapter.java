@@ -6,6 +6,7 @@ import com.domain.ports.repositorys.IHallRepository;
 import com.infrastructure.persistence.entities.Hall;
 import com.infrastructure.persistence.mapper.HallMapper;
 import com.infrastructure.persistence.repositorys.IHallJpaRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
+@Repository
 public class HallRepositoryAdapter implements IHallRepository {
 
     private final IHallJpaRepository hallJpaRepository;

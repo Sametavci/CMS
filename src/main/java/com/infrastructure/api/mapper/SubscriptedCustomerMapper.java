@@ -4,7 +4,7 @@ import com.infrastructure.api.dto.SubscriptedCustomerDTO;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("apiSubscriptedCustomerMapper")
 @NoArgsConstructor
 public class SubscriptedCustomerMapper implements BaseMapper<DomainSubscriptedCustomer, SubscriptedCustomerDTO> {
 

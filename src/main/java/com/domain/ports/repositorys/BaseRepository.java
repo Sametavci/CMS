@@ -1,5 +1,7 @@
 package com.domain.ports.repositorys;
 
+import org.springframework.data.repository.NoRepositoryBean;
+
 import java.util.List;
 import java.util.Optional;
 

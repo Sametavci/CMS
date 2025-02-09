@@ -1,39 +1,25 @@
 package com.infrastructure.persistence.adapter;
 
 import com.domain.models.DomainMovie;
-import com.domain.ports.repositorys.BaseRepository;
 import com.domain.ports.repositorys.IMovieRepository;
 import com.infrastructure.persistence.entities.Movie;
 import com.infrastructure.persistence.mapper.MovieMapper;
 import com.infrastructure.persistence.repositorys.IMovieJpaRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-@Service
+
+@Repository
 public class MovieRepositoryAdapter implements IMovieRepository {
 
     private final IMovieJpaRepository movieJpaRepository;
     private final MovieMapper mapper;
 
-    @Autowired
-    public MovieRepositoryAdapter(BaseRepository<Movie, Long> movieJpaRepository, MovieMapper mapper) {
-        this.movieJpaRepository = (IMovieJpaRepository) movieJpaRepository; // Cast ile düzeltme
+    public MovieRepositoryAdapter(IMovieJpaRepository movieJpaRepository, MovieMapper mapper) {
+        this.movieJpaRepository = movieJpaRepository;
         this.mapper = mapper;
-    }
-
-    @Override
-    public DomainMovie save(DomainMovie entity) {
-        Movie movieEntity = mapper.toEntity(entity);
-        Movie savedEntity = movieJpaRepository.save(movieEntity);
-        return mapper.toDomain(savedEntity);
-    }
-
-    @Override
-    public Optional<DomainMovie> findById(Long id) {
-        return movieJpaRepository.findById(id).map(mapper::toDomain);
     }
 
     @Override
@@ -41,6 +27,18 @@ public class MovieRepositoryAdapter implements IMovieRepository {
         return movieJpaRepository.findAll().stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<DomainMovie> findById(Long id) {
+        return movieJpaRepository.findById(id)
+                .map(mapper::toDomain);
+    }
+
+    @Override
+    public DomainMovie save(DomainMovie domainMovie) {
+        Movie entity = mapper.toEntity(domainMovie);
+        return mapper.toDomain(movieJpaRepository.save(entity));
     }
 
     @Override

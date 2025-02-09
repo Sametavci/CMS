@@ -5,6 +5,9 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Repository;
+
+@Repository
 
 public class MovieSpecification {
     public static Specification<DomainMovie> hasTitle(String title) {

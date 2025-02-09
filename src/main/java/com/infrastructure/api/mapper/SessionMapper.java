@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-@Component
+@Component("apiSessionMapper")
 @NoArgsConstructor
 public class SessionMapper implements BaseMapper<DomainSession, SessionDTO>
 {

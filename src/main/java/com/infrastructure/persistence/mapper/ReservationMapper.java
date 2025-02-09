@@ -4,7 +4,7 @@ import com.domain.models.DomainReservation;
 import com.infrastructure.persistence.entities.Reservation;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("persistenceReservationMapper")
 public class ReservationMapper implements BaseMapper<Reservation, DomainReservation> {
 
     @Override

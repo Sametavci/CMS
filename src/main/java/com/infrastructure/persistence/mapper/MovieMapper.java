@@ -4,7 +4,7 @@ import com.domain.models.DomainMovie;
 import com.infrastructure.persistence.entities.Movie;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("persistenceMovieMapper")
 public class MovieMapper implements BaseMapper<Movie, DomainMovie> {
 
     @Override

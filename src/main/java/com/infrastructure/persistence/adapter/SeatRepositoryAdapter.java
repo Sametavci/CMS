@@ -5,6 +5,7 @@ import com.domain.ports.repositorys.ISeatRepository;
 import com.infrastructure.persistence.entities.Seat;
 import com.infrastructure.persistence.mapper.SeatMapper;
 import com.infrastructure.persistence.repositorys.ISeatJpaRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
+@Repository
 public class SeatRepositoryAdapter implements ISeatRepository {
 
     private final ISeatJpaRepository seatJpaRepository;

@@ -4,7 +4,7 @@ import com.infrastructure.api.dto.CustomerDTO;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("apiCustomerMapper")
 @NoArgsConstructor
 public class CustomerMapper implements BaseMapper<DomainCustomer, CustomerDTO> {
 

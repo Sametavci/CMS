@@ -5,13 +5,14 @@ import com.domain.ports.repositorys.ICustomerRepository;
 import com.infrastructure.persistence.mapper.CustomerMapper;
 import com.infrastructure.persistence.entities.Customer;
 import com.infrastructure.persistence.repositorys.ICustomerJpaRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Repository
 public class CustomerRepositoryAdapter implements ICustomerRepository {
 
     private final ICustomerJpaRepository customerJpaRepository;

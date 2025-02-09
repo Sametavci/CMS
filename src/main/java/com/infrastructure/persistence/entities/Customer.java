@@ -7,11 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "customers")
 @Data
 @NoArgsConstructor
-@Getter
-@Setter
-@Table(name = "customers")
 public class Customer extends BaseEntity {
 
     @Column(name = "name", nullable = false)

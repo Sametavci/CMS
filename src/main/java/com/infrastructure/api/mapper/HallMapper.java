@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
-@Component
+@Component("apiHallMapper")
 @NoArgsConstructor
 public class HallMapper implements BaseMapper<DomainHall, HallDTO> {
 

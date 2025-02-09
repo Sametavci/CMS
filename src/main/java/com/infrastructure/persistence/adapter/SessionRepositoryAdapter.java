@@ -5,6 +5,7 @@ import com.domain.ports.repositorys.ISessionRepository;
 import com.infrastructure.persistence.entities.Session;
 import com.infrastructure.persistence.mapper.SessionMapper;
 import com.infrastructure.persistence.repositorys.ISessionJpaRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
+@Repository
 public class SessionRepositoryAdapter implements ISessionRepository {
 
     private final ISessionJpaRepository sessionJpaRepository;
