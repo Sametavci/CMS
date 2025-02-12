@@ -48,12 +48,6 @@ public class MovieRepositoryAdapter implements IMovieRepository {
         movieJpaRepository.deleteById(id);
     }
 
-    @Override
-    public List<DomainMovie> getMoviesByFilter(String title, String genre) {
-        //TODO : YAP
-        return null;
-    }
-
     public DomainMovie update(DomainMovie dto, Long id){
         DomainMovie databaseElement = findById(id).orElseThrow(
                 () -> new RuntimeException("Entity with that id couldnt find" + id)

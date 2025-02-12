@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface IMovieRepository extends BaseRepository<DomainMovie, Long>{
 
-
-List<DomainMovie> getMoviesByFilter(String title, String genre);
 }

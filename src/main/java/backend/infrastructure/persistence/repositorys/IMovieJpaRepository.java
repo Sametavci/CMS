@@ -5,5 +5,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IMovieJpaRepository extends BaseJpaRepository<Movie, Long> {
-Movie findByTitle(String title);
 }
