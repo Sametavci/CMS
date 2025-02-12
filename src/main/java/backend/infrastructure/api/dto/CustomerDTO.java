@@ -10,5 +10,9 @@ import lombok.NoArgsConstructor;
 
 public class CustomerDTO extends BaseDTO {
     private String name;
+    private String surname;
+    private int age;
+    private Boolean isSub;
+    private String email;
 
 }

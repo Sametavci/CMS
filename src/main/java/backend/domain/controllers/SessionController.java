@@ -30,6 +30,7 @@ public class SessionController extends BaseController<DomainSession, Long> {
         return ResponseEntity.ok(sessionService.endTimeBySessionId(id));
     }
 
+    @GetMapping("hall/{id}")
     public CollectionModel<EntityModel<DomainSession>> getAllSessionsFromHall(@PathVariable Long id){
         List<EntityModel<DomainSession>> entityModels = sessionService.getAllSessionsFromHall(id)
                 .stream()
@@ -40,6 +41,7 @@ public class SessionController extends BaseController<DomainSession, Long> {
         return CollectionModel.of(entityModels, linkTo(methodOn(getControllerClass()).findAll()).withRel("all-entities"));
     }
 
+    @GetMapping("movie/{id}")
     public CollectionModel<EntityModel<DomainSession>> getAllSessionsFromMovie(@PathVariable Long id){
         List<EntityModel<DomainSession>> entityModels = sessionService.getAllSessionsFromMovie(id)
                 .stream()

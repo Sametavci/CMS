@@ -45,7 +45,7 @@ public class CustomerController extends BaseController<DomainCustomer, Long> {
         return ResponseEntity.noContent().location(collectionUri).build();
     }
 
-    @PostMapping("{id}/customerToSub")
+    @PutMapping("{id}/customerToSub")
     public ResponseEntity<DomainCustomer> makeCustomerSub(@PathVariable Long id, @RequestBody String email){
         DomainCustomer updatedEntity = customerService.makeCustomerSub(id, email);
         EntityModel<DomainCustomer> entityModel = EntityModel.of(
@@ -54,7 +54,7 @@ public class CustomerController extends BaseController<DomainCustomer, Long> {
                 linkTo(methodOn(getClass()).findAll()).withRel("all-entities"));
         return getResponseQuery();
     }
-    @PostMapping("{id}/subToCustomer")
+    @PutMapping("{id}/subToCustomer")
     public ResponseEntity<DomainCustomer> makeSubCustomer(@PathVariable Long id){
         DomainCustomer updatedEntity = customerService.makeSubCustomer(id);
         EntityModel<DomainCustomer> entityModel = EntityModel.of(
@@ -63,7 +63,7 @@ public class CustomerController extends BaseController<DomainCustomer, Long> {
                 linkTo(methodOn(getClass()).findAll()).withRel("all-entities"));
         return getResponseQuery();
     }
-    @GetMapping("subs")
+    @GetMapping("/subs")
     public CollectionModel<EntityModel<DomainCustomer>> getAllSubs(){
         List<EntityModel<DomainCustomer>> entityModels = customerService.getAllSubs()
                 .stream()

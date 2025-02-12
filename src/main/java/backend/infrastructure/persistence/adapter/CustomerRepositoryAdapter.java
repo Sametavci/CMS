@@ -8,6 +8,7 @@ import backend.domain.ports.repositorys.ICustomerRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,7 +62,11 @@ public class CustomerRepositoryAdapter implements ICustomerRepository {
         return mapper.toDomain(savedEntity);
     }
     public List<DomainCustomer> getAllSubs(){
-        return findAll().stream().filter(DomainCustomer::getIsSub).toList();
+        return Optional.ofNullable(findAll())
+                .orElse(Collections.emptyList())
+                .stream()
+                .filter(customer -> Boolean.TRUE.equals(customer.getIsSub()))
+                .toList();
     }
     public DomainCustomer makeCustomerSub(Long id, String mail){
         DomainCustomer databaseElement = findById(id).orElseThrow(
@@ -70,6 +75,7 @@ public class CustomerRepositoryAdapter implements ICustomerRepository {
         Customer entity = mapper.toEntity(databaseElement);
         databaseElement.setIsSub(true);
         databaseElement.setEmail(mail);
+        mapper.update(entity, databaseElement);
         Customer savedEntity = customerJpaRepository.save(entity);
         return mapper.toDomain(savedEntity);
     }
@@ -80,6 +86,7 @@ public class CustomerRepositoryAdapter implements ICustomerRepository {
         Customer entity = mapper.toEntity(databaseElement);
         databaseElement.setIsSub(false);
         databaseElement.setEmail(null);
+        mapper.update(entity, databaseElement);
         Customer savedEntity = customerJpaRepository.save(entity);
         return mapper.toDomain(savedEntity);
     }
