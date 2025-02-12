@@ -22,14 +22,4 @@ public class MovieService extends BaseService<DomainMovie, Long> {
         return new ArrayList<>(movieRepository.getMoviesByFilter(movieFilter.getTitle(), movieFilter.getGenre()));
     }
 
-
-    @Override
-    public Optional<DomainMovie> findById(Long id) {
-        return movieRepository.findById(id);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        movieRepository.deleteById(id);
-    }
 }

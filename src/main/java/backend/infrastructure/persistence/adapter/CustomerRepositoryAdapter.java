@@ -59,6 +59,28 @@ public class CustomerRepositoryAdapter implements ICustomerRepository {
         mapper.update(entity, dto);
         Customer savedEntity = customerJpaRepository.save(entity);
         return mapper.toDomain(savedEntity);
-
+    }
+    public List<DomainCustomer> getAllSubs(){
+        return findAll().stream().filter(DomainCustomer::getIsSub).toList();
+    }
+    public DomainCustomer makeCustomerSub(Long id, String mail){
+        DomainCustomer databaseElement = findById(id).orElseThrow(
+                () -> new RuntimeException("Entity with that id couldnt find" + id)
+        );
+        Customer entity = mapper.toEntity(databaseElement);
+        databaseElement.setIsSub(true);
+        databaseElement.setEmail(mail);
+        Customer savedEntity = customerJpaRepository.save(entity);
+        return mapper.toDomain(savedEntity);
+    }
+    public DomainCustomer makeSubCustomer(Long id){
+        DomainCustomer databaseElement = findById(id).orElseThrow(
+                () -> new RuntimeException("Entity with that id couldnt find" + id)
+        );
+        Customer entity = mapper.toEntity(databaseElement);
+        databaseElement.setIsSub(false);
+        databaseElement.setEmail(null);
+        Customer savedEntity = customerJpaRepository.save(entity);
+        return mapper.toDomain(savedEntity);
     }
 }

@@ -1,6 +1,7 @@
 package backend.infrastructure.persistence.adapter;
 
 import backend.domain.models.DomainCustomer;
+import backend.domain.models.DomainSession;
 import backend.infrastructure.persistence.entities.Customer;
 import backend.infrastructure.persistence.entities.Hall;
 import backend.infrastructure.persistence.entities.Seat;

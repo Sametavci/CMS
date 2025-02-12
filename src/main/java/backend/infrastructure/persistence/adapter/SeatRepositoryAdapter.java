@@ -61,4 +61,8 @@ public class SeatRepositoryAdapter implements ISeatRepository {
         return mapper.toDomain(savedEntity);
 
     }
+
+    public List<DomainSeat> getAllSeatsFromHall(Long hallId){
+        return findAll().stream().filter(m -> m.getHall() == hallId).toList();
+    }
 }

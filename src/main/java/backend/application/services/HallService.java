@@ -28,14 +28,4 @@ public class HallService extends BaseService<DomainHall, Long> {
 
         return hallRepository.showEmptySeats(id);
     }
-
-    @Override
-    public Optional<DomainHall> findById(Long id) {
-        return hallRepository.findById(id);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        hallRepository.deleteById(id);
-    }
 }

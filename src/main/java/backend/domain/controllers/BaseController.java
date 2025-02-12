@@ -62,7 +62,7 @@ public abstract class BaseController<T extends DomainBase, ID extends Serializab
         service.deleteById(id);
         return (ResponseEntity<Void>) getResponseQuery();
     }
-    private ResponseEntity<?> getResponseQuery() {
+    public ResponseEntity<?> getResponseQuery() {
         String requestedValue = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().getPath();
         while(requestedValue.charAt(requestedValue.length()-1) != '/'){
             requestedValue = requestedValue.substring(0, requestedValue.length()-1);

@@ -4,6 +4,7 @@ import backend.domain.ports.repositorys.ISeatRepository;
 import backend.domain.models.DomainSeat;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,14 +15,5 @@ public class SeatService extends BaseService<DomainSeat, Long> {
         super(seatRepository);
         this.seatRepository = seatRepository;
     }
-
-    @Override
-    public Optional<DomainSeat> findById(Long id) {
-        return seatRepository.findById(id);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        seatRepository.deleteById(id);
-    }
+    public List<DomainSeat> getAllSeatsFromHall(Long hallId){ return seatRepository.getAllSeatsFromHall(hallId); }
 }

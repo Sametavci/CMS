@@ -23,13 +23,4 @@ public class ReservationService extends BaseService<DomainReservation, Long> {
         return reservationRepository.checkCustomerDiscountEligibility(customerId);
     }
 
-    @Override
-    public Optional<DomainReservation> findById(Long id) {
-        return reservationRepository.findById(id);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        reservationRepository.deleteById(id);
-    }
 }

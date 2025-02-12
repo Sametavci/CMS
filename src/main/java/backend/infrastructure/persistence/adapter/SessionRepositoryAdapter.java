@@ -66,4 +66,11 @@ public class SessionRepositoryAdapter implements ISessionRepository {
         return mapper.toDomain(savedEntity);
 
     }
+    public List<DomainSession> getAllSessionsFromHall(Long hallId){
+        return findAll().stream().filter(m -> m.getHall() == hallId).toList();
+    }
+
+    public List<DomainSession> getAllSessionsFromMovie(Long movieId){
+        return findAll().stream().filter(m -> m.getMovie() == movieId).toList();
+    }
 }

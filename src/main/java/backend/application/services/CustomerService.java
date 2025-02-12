@@ -34,4 +34,7 @@ public class CustomerService extends BaseService<DomainCustomer, Long> {
     public void deleteById(Long id) {
         customerRepository.deleteById(id);
     }
+    public DomainCustomer makeSubCustomer(Long id) { return customerRepository.makeSubCustomer(id); }
+    public DomainCustomer makeCustomerSub(Long id, String mail) { return customerRepository.makeCustomerSub(id, mail); }
+    public List<DomainCustomer> getAllSubs() { return customerRepository.getAllSubs(); }
 }
