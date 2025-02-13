@@ -9,5 +9,4 @@ public class CMSApplication {
         SpringApplication.run(CMSApplication.class, args);
 
     }
-
 }

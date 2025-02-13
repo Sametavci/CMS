@@ -3,13 +3,10 @@ package backend.application.services;
 import backend.domain.models.DomainHall;
 import backend.domain.models.DomainSeat;
 import backend.domain.ports.repositorys.IHallRepository;
-import backend.domain.ports.repositorys.ISeatRepository;
-import backend.infrastructure.persistence.entities.Seat;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Service
 public class HallService extends BaseService<DomainHall, Long> {

@@ -4,7 +4,6 @@ import backend.domain.models.DomainReservation;
 import backend.domain.ports.repositorys.IReservationRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class ReservationService extends BaseService<DomainReservation, Long> {

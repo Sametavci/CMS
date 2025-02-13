@@ -1,6 +1,7 @@
 package backend.application.services;
 
 import backend.domain.models.DomainCustomer;
+import backend.domain.models.DomainReservation;
 import backend.domain.ports.repositorys.ICustomerRepository;
 import org.springframework.stereotype.Service;
 

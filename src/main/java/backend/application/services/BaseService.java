@@ -1,7 +1,7 @@
 package backend.application.services;
 
 import backend.domain.ports.repositorys.BaseRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +30,7 @@ public abstract class BaseService<T, ID> {
         repository.deleteById(id);
     }
 
-    public T update(T dto, ID id){ return repository.update(dto, id); }
+    public T update(T dto, ID id){
+        return repository.update(dto, id); }
 
-    }
+}

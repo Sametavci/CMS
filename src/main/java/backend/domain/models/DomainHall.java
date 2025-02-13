@@ -17,7 +17,5 @@ public class DomainHall extends DomainBase {
     private Integer capacity;
     private String type;
 
-    // TODO : GET ALL SESSIONS FROM A HALL
-    // TODO : GET ALL SEATS FROM A HALL
 
 }

@@ -17,6 +17,5 @@ public class DomainMovie extends DomainBase {
     private String genre;
     private Integer duration;
     private Double price;
-    // TODO : GET ALL SESSIONS FROM A MOVIE
 
 }

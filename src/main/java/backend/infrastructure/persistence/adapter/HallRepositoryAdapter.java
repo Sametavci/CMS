@@ -1,8 +1,5 @@
 package backend.infrastructure.persistence.adapter;
 
-import backend.domain.models.DomainCustomer;
-import backend.domain.models.DomainSession;
-import backend.infrastructure.persistence.entities.Customer;
 import backend.infrastructure.persistence.entities.Hall;
 import backend.infrastructure.persistence.entities.Seat;
 import backend.infrastructure.persistence.mapper.SeatMapper;
@@ -21,16 +18,17 @@ import java.util.stream.Collectors;
 
 @Repository
 public class HallRepositoryAdapter implements IHallRepository {
-
     private final IHallJpaRepository hallJpaRepository;
     private final HallMapper mapper;
+    private final ISeatJpaRepository iSeatJpaRepository;
 
 
     @Autowired
-    public HallRepositoryAdapter(IHallJpaRepository hallJpaRepository, HallMapper mapper) {
+    public HallRepositoryAdapter(IHallJpaRepository hallJpaRepository, HallMapper mapper, ISeatJpaRepository iSeatJpaRepository) {
         this.hallJpaRepository = hallJpaRepository;
         this.mapper = mapper;
-    }
+        this.iSeatJpaRepository = iSeatJpaRepository;
+}
 
     @Override
     public DomainHall save(DomainHall entity) {
@@ -58,9 +56,9 @@ public class HallRepositoryAdapter implements IHallRepository {
 
     @Override
     public boolean isAllSeatsFullByHallId(Long id) {
-        List<Seat> seats = hallJpaRepository.findById(id).get().getSeats();
-        for(Seat seat : seats){
-            if(!seat.isBooked()){
+        List<Seat> seats = iSeatJpaRepository.findAll().stream().filter(m -> m.getHall().getId() == id).toList();
+        for (Seat seat : seats) {
+            if (!seat.isBooked()) {
                 return false;
             }
         }
