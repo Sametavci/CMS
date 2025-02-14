@@ -56,8 +56,7 @@ public class SeatRepositoryAdapter implements ISeatRepository {
                 () -> new RuntimeException("Entity with that id couldnt find" + id)
         );
         Seat entity = mapper.toEntity(databaseElement);
-        mapper.update(entity, dto);
-        Seat savedEntity = seatJpaRepository.save(entity);
+        Seat savedEntity = seatJpaRepository.save(mapper.update(entity, dto));
         return mapper.toDomain(savedEntity);
 
     }

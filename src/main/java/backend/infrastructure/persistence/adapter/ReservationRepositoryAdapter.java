@@ -77,8 +77,7 @@ public class ReservationRepositoryAdapter implements IReservationRepository {
                 () -> new RuntimeException("Entity with that id couldnt find" + id)
         );
         Reservation entity = mapper.toEntity(databaseElement);
-        mapper.update(entity, dto);
-        Reservation savedEntity = reservationJpaRepository.save(entity);
+        Reservation savedEntity = reservationJpaRepository.save(mapper.update(entity, dto));
         return mapper.toDomain(savedEntity);
 
     }

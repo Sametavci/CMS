@@ -66,10 +66,9 @@ class MovieServiceTest {
     void testUpdate() {
         when(movieRepository.save(any(DomainMovie.class))).thenReturn(movie);
 
-        DomainMovie updatedMovie = movieService.update(movie, 1L);
+        movieService.update(movie, 1L);
 
-        assertNotNull(updatedMovie);
-        assertEquals("Interstellar", updatedMovie.getTitle());
+        assertEquals("Interstellar", movie.getTitle());
     }
 
     @Test

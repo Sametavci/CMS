@@ -47,11 +47,11 @@ public class ReservationMapper implements BaseMapper<Reservation, DomainReservat
         return domain;
     }
     @Override
-    public void update(Reservation entity, DomainReservation dto) {
+    public Reservation update(Reservation entity, DomainReservation dto) {
         entity.setCustomer(iCustomerJpaRepository.findById(dto.getCustomer()).orElseThrow());
         entity.setSeat(iSeatJpaRepository.findById(dto.getSeat()).orElseThrow());
         entity.setSession(iSessionJpaRepository.findById(dto.getSession()).orElseThrow());
         entity.setUpdatedAt(LocalDateTime.now());
-
+        return entity;
     }
 }

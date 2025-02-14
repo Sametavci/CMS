@@ -11,6 +11,7 @@ import backend.infrastructure.persistence.mapper.HallMapper;
 import backend.infrastructure.persistence.repositorys.ISeatJpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -65,10 +66,12 @@ public class HallRepositoryAdapter implements IHallRepository {
         return true;
     }
 
+    @Transactional
     @Override
     public List<DomainSeat> showEmptySeats(Long id) {
         final SeatMapper seatMapper = new SeatMapper(hallJpaRepository);
-        return hallJpaRepository.findById(id).get().getSeats()
+        Hall hall =  hallJpaRepository.findById(id).orElseThrow();
+        return hall.getSeats()
                 .stream()
                 .map(seatMapper::toDomain)
                 .filter(m -> !m.isBooked())
@@ -79,8 +82,7 @@ public class HallRepositoryAdapter implements IHallRepository {
                 () -> new RuntimeException("Entity with that id couldnt find" + id)
         );
         Hall entity = mapper.toEntity(databaseElement);
-        mapper.update(entity, dto);
-        Hall savedEntity = hallJpaRepository.save(entity);
+        Hall savedEntity = hallJpaRepository.save(mapper.update(entity, dto));
         return mapper.toDomain(savedEntity);
 
     }

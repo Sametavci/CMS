@@ -69,8 +69,10 @@ class HallServiceIntegrationTest {
 
     @Test
     void testShowEmptySeatsWithRealDatabase() {
+        List<DomainSeat> list1 = hallService.showEmptySeats(hall.getId());
+        List<DomainSeat> list2 = list.stream().filter(m -> !m.isBooked()).toList();
 
-        assertEquals(true, hallService.showEmptySeats(hall.getId()).stream().sorted().equals(list.stream().filter(m -> !m.isBooked()).sorted().toList()));
+        assertEquals(true, list1.size() == list2.size() && list1.containsAll(list2));
     }
 
 }

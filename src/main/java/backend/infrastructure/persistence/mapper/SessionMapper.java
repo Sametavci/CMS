@@ -49,13 +49,13 @@ public class SessionMapper implements BaseMapper<Session, DomainSession> {
     }
 
     @Override
-    public void update(Session entity, DomainSession dto) {
+    public Session update(Session entity, DomainSession dto) {
         entity.setId(dto.getId());
         entity.setStartTime(LocalDateTime.now()); // String -> LocalDateTime
         entity.setPrice(dto.getPrice());
         entity.setMovie(iMovieJpaRepository.findById(dto.getMovie()).orElseThrow());
         entity.setHall(iHallJpaRepository.findById(dto.getHall()).orElseThrow());
         entity.setUpdatedAt(LocalDateTime.now());
-
+        return entity;
     }
 }

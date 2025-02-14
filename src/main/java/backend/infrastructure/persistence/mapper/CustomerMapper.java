@@ -38,7 +38,7 @@ public class CustomerMapper implements BaseMapper<Customer, DomainCustomer> {
     }
 
     @Override
-    public void update(Customer entity, DomainCustomer dto) {
+    public Customer update(Customer entity, DomainCustomer dto) {
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         entity.setAge(dto.getAge());
@@ -46,5 +46,6 @@ public class CustomerMapper implements BaseMapper<Customer, DomainCustomer> {
         entity.setEmail(dto.getEmail());
         entity.setSurname(dto.getSurname());
         entity.setUpdatedAt(LocalDateTime.now());
+        return entity;
     }
 }

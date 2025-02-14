@@ -45,12 +45,13 @@ public class SeatMapper implements BaseMapper<Seat, DomainSeat> {
         return domain;
     }
     @Override
-    public void update(Seat entity, DomainSeat dto) {
+    public Seat update(Seat entity, DomainSeat dto) {
         entity.setSeatRow(entity.getSeatRow());
         entity.setSeatColumn(entity.getSeatColumn());
         entity.setBooked(entity.isBooked());
         entity.setHall(iHallJpaRepository.findById(dto.getHall()).orElseThrow());
         entity.setUpdatedAt(LocalDateTime.now());
         entity.setSeatType(dto.getSeatType());
+        return entity;
     }
 }

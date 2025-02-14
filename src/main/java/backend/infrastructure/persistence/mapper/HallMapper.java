@@ -33,10 +33,11 @@ public class HallMapper implements BaseMapper<Hall, DomainHall> {
         return domain;
     }
     @Override
-    public void update(Hall hallEntity, DomainHall dto) {
+    public Hall update(Hall hallEntity, DomainHall dto) {
         hallEntity.setName(dto.getName());
         hallEntity.setCapacity(dto.getCapacity());
         hallEntity.setType(dto.getType());
         hallEntity.setUpdatedAt(LocalDateTime.now());
+        return hallEntity;
     }
 }

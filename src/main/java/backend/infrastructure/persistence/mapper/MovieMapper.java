@@ -34,14 +34,14 @@ public class MovieMapper implements BaseMapper<Movie, DomainMovie> {
         domain.setUpdatedAt(entity.getUpdatedAt());
         return domain;
     }
-    public void update(Movie movieEntity, DomainMovie dto) {
+    public Movie update(Movie movieEntity, DomainMovie dto) {
         movieEntity.setId(dto.getId());
         movieEntity.setTitle(dto.getTitle());
         movieEntity.setGenre(dto.getGenre());
         movieEntity.setDuration(dto.getDuration());
         movieEntity.setPrice(dto.getPrice());
         movieEntity.setUpdatedAt(LocalDateTime.now());
-
+        return movieEntity;
     }
 
 

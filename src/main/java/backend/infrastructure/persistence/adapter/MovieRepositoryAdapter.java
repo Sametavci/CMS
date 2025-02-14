@@ -53,8 +53,7 @@ public class MovieRepositoryAdapter implements IMovieRepository {
                 () -> new RuntimeException("Entity with that id couldnt find" + id)
         );
         Movie entity = mapper.toEntity(databaseElement);
-        mapper.update(entity, dto);
-        Movie savedEntity = movieJpaRepository.save(entity);
+        Movie savedEntity = movieJpaRepository.save(mapper.update(entity, dto));
         return mapper.toDomain(savedEntity);
 
     }

@@ -75,8 +75,7 @@ public class CustomerRepositoryAdapter implements ICustomerRepository {
         Customer entity = mapper.toEntity(databaseElement);
         databaseElement.setIsSub(true);
         databaseElement.setEmail(mail);
-        mapper.update(entity, databaseElement);
-        Customer savedEntity = customerJpaRepository.save(entity);
+        Customer savedEntity = customerJpaRepository.save(mapper.update(entity, databaseElement));
         return mapper.toDomain(savedEntity);
     }
     public DomainCustomer makeSubCustomer(Long id){

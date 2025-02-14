@@ -61,8 +61,7 @@ public class SessionRepositoryAdapter implements ISessionRepository {
                 () -> new RuntimeException("Entity with that id couldnt find" + id)
         );
         Session entity = mapper.toEntity(databaseElement);
-        mapper.update(entity, dto);
-        Session savedEntity = sessionJpaRepository.save(entity);
+        Session savedEntity = sessionJpaRepository.save(mapper.update(entity, dto));
         return mapper.toDomain(savedEntity);
 
     }
