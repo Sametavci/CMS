@@ -163,7 +163,7 @@ docker run --network cms_network -p 8080:8080 -e SPRING_DATASOURCE_URL=jdbc:post
 ## Deliverables
 1. **Git Repository:**
    - URL: [https://github.com/Sametavci/CMS](https://github.com/Sametavci/CMS)
-2. **Screencast Video:** (To be provided separately)
+2. **Screencast Video:** https://cloud.thws.de/s/XxwRw5zTeej45HA
 3. **Contributions:**
    - Cihan CAN, 5123010
    - Umut AVCI, 5123064
