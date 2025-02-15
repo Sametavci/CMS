@@ -168,4 +168,4 @@ docker run --network cms_network -p 8080:8080 -e SPRING_DATASOURCE_URL=jdbc:post
    - Cihan CAN, 5123010
    - Umut AVCI, 5123064
    - Samet AVCI, 5123065
-   - Mumtaz ERDOGAN 5123036
+   - Mumtaz ERDOGAN, 5123036
