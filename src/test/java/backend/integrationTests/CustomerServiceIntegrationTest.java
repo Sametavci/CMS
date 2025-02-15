@@ -60,4 +60,5 @@ public class CustomerServiceIntegrationTest {
     public void TestMakeSubCustomer(){
         assertFalse(customerService.makeSubCustomer(customers.get(1).getId()).getIsSub());
     }
+
 }

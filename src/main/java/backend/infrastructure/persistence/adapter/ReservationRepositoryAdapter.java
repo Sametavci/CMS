@@ -53,24 +53,6 @@ public class ReservationRepositoryAdapter implements IReservationRepository {
         reservationJpaRepository.deleteById(id);
     }
 
-    @Override
-    public Double calculateDiscountedPrice(Long id, Double discountPercentage) {
-        Reservation reservation = reservationJpaRepository.findById(id).orElseThrow();
-
-        Double originalPrice = reservation.getSession().getPrice();
-
-        if (originalPrice <= 0 || discountPercentage <= 0 || discountPercentage > 100) {
-            throw new IllegalArgumentException("Invalid price or discount percentage");
-        }
-
-        return originalPrice - (originalPrice * (discountPercentage / 100));
-    }
-
-    @Override
-    public boolean checkCustomerDiscountEligibility(Long customerId) {
-
-        return false;
-    }
 
     public DomainReservation update(DomainReservation dto, Long id){
         DomainReservation databaseElement = findById(id).orElseThrow(

@@ -14,12 +14,4 @@ public class ReservationService extends BaseService<DomainReservation, Long> {
         this.reservationRepository = reservationRepository;
     }
 
-    public Double calculateDiscountedPrice(Long id, Double discountPercentage) {
-        return reservationRepository.calculateDiscountedPrice(id, discountPercentage);
-    }
-
-    public boolean checkCustomerDiscountEligibility(Long customerId) {
-        return reservationRepository.checkCustomerDiscountEligibility(customerId);
-    }
-
 }
