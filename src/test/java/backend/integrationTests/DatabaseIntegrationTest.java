@@ -1,5 +1,6 @@
 package backend.integrationTests;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -18,6 +19,12 @@ public class DatabaseIntegrationTest {
                     .withDatabaseName("testdb")
                     .withUsername("admin")
                     .withPassword("admin");
+
+    @AfterEach
+    void tearDown() {
+        postgreSQLContainer.stop();
+        System.out.println("Test veritabanı kapatıldı.");
+    }
 
     @Test
     void testDatabaseStartsCorrectly() {

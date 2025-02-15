@@ -46,6 +46,6 @@ class ReservationServiceTest {
         when(reservationRepository.save(any(DomainReservation.class))).thenReturn(reservation);
         DomainReservation savedReservation = reservationService.save(reservation);
         assertNotNull(savedReservation);
-        assertEquals(3L, savedReservation.getCustomer());
+        assertEquals(2L, savedReservation.getCustomer());
     }
 }

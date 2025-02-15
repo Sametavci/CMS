@@ -6,6 +6,7 @@ import backend.domain.models.DomainSeat;
 import backend.domain.ports.repositorys.IHallRepository;
 import backend.domain.ports.repositorys.ISeatRepository;
 import jakarta.validation.constraints.AssertTrue;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +46,25 @@ public class SeatServiceIntegrationTest {
             DomainSeat seat = new DomainSeat();
             seat.setSeatRow("A");
             seat.setSeatColumn(i);
-            seat.setBooked(i <= 20); // İlk 20 koltuk 'isBooked = true', diğerleri false olacak
+            seat.setBooked(i <= 20);
             seat.setSeatType("Standard");
-            seat.setHall(hall.getId()); // Koltukları salon ile ilişkilendir
+            seat.setHall(hall.getId());
             DomainSeat savedSeat = iSeatRepository.save(seat);
             seats.add(savedSeat);
         }
+    }
+    @AfterEach
+    public void tearDown() {
+        for (DomainSeat seat : iSeatRepository.findAll()) {
+            iSeatRepository.deleteById(seat.getId());
+        }
+
+        for (DomainHall hall : iHallRepository.findAll()) {
+            iHallRepository.deleteById(hall.getId());
+        }
+        seats.clear();
+
+        System.out.println("Seat ve Hall test verileri temizlendi!");
     }
 
     @Test

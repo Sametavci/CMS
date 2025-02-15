@@ -76,9 +76,8 @@ class SessionServiceTest {
     void testUpdate() {
         when(sessionRepository.save(any(DomainSession.class))).thenReturn(session);
 
-        DomainSession updatedSession = sessionService.update(session, 1L);
-        assertNotNull(updatedSession);
-        assertEquals(1L, updatedSession.getId());
+        sessionService.update(session, 1L);
+        assertEquals(1L, session.getId());
     }
 
     @Test

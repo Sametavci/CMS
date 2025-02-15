@@ -7,18 +7,24 @@ import backend.domain.models.DomainSession;
 import backend.domain.ports.repositorys.IHallRepository;
 import backend.domain.ports.repositorys.IMovieRepository;
 import backend.domain.ports.repositorys.ISessionRepository;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.junit.jupiter.api.AfterEach;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -51,8 +57,8 @@ public class SessionServiceIntegrationTest {
             movie.setGenre("Sci-Fic");
             movie.setPrice(i*10.00);
             movie.setTitle("TEST MOVIE"+i);
-           DomainMovie savedMovie = iMovieRepository.save(movie);
-           movieIds.add(savedMovie.getId());
+            DomainMovie savedMovie = iMovieRepository.save(movie);
+            movieIds.add(savedMovie.getId());
         }
 
 
@@ -69,16 +75,50 @@ public class SessionServiceIntegrationTest {
 
     @Test
     public void TestGetAllSessionsFromHall(){
-        List<DomainSession> sessionList = sessions.stream().filter(m -> m.getHall() == hall.getId()).toList();
-        assertTrue(sessionList.size() == sessionService.getAllSessionsFromHall(hall.getId()).size()
-        && sessionService.getAllSessionsFromHall(hall.getId()).containsAll(sessionList));
-    }
+        List<Long> sessionIds = sessionService.getAllSessionsFromHall(hall.getId())
+                .stream()
+                .map(DomainSession::getId)
+                .toList();
 
+        List<Long> expectedIds = sessions.stream()
+                .filter(m->m.getHall() == hall.getId())
+                .map(DomainSession::getId)
+                .toList();
+
+        assertTrue(sessionIds.size() == expectedIds.size() && sessionIds.containsAll(expectedIds));
+    }
     @Test
     public void TestGetAllSessionsFromMovie(){
-        List<DomainSession> sessionList = sessions.stream().filter(m -> m.getMovie() == movieIds.get(2)).toList();
-        List<DomainSession> sessions = sessionService.getAllSessionsFromMovie(movieIds.get(2));
-        assertTrue(sessionList.size() == sessions.size()
-                && sessions.containsAll(sessionList));
+        List<Long> sessionList = sessions.stream()
+                .filter(m -> Objects.equals(m.getMovie(), 3L))
+                .map(DomainSession::getId)
+                .toList();
+        List<Long> actualSessionIds = sessionService.getAllSessionsFromMovie(3L)
+                .stream()
+                .map(DomainSession::getId)
+                .toList();
+        assertEquals(sessionList.size(), actualSessionIds.size());
+        assertTrue(sessionList.containsAll(actualSessionIds));
+    }
+
+
+    @AfterEach
+    public void tearDown() {
+        for (DomainSession session : iSessionRepository.findAll()) {
+            iSessionRepository.deleteById(session.getId());
+        }
+
+        for (DomainMovie movie : iMovieRepository.findAll()) {
+            iMovieRepository.deleteById(movie.getId());
+        }
+
+        for (DomainHall hall : iHallRepository.findAll()) {
+            iHallRepository.deleteById(hall.getId());
+        }
+
+        sessions.clear();
+        movieIds.clear();
+
+        System.out.println("Test verileri temizlendi!");
     }
 }

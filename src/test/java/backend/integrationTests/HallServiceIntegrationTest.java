@@ -7,6 +7,7 @@ import backend.domain.ports.repositorys.IHallRepository;
 import backend.domain.ports.repositorys.ISeatRepository;
 import backend.infrastructure.persistence.entities.Hall;
 import backend.infrastructure.persistence.entities.Seat;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -56,10 +57,23 @@ class HallServiceIntegrationTest {
             seat.setSeatColumn(i);
             seat.setBooked(false);
             seat.setSeatType("Standard");
-            seat.setHall(hall.getId());  // Koltukları hall nesnesine bağla
+            seat.setHall(hall.getId());
             DomainSeat savedSeat = seatRepository.save(seat);
             list.add(savedSeat);
         }
+    }
+    @AfterEach
+    void tearDown() {
+        for (DomainSeat seat : seatRepository.findAll()) {
+            seatRepository.deleteById(seat.getId());
+        }
+
+        for (DomainHall hall : hallRepository.findAll()) {
+            hallRepository.deleteById(hall.getId());
+        }
+
+        list.clear();
+        System.out.println("Hall ve Seat test verileri temizlendi!");
     }
     @Test
     void testIsAllSeatsFullByHallId_WithRealDatabase() {
