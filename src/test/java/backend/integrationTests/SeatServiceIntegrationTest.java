@@ -70,7 +70,11 @@ public class SeatServiceIntegrationTest {
     @Test
     public void TestGetAllSeatsFromHall(){
         List<DomainSeat> domainSeats = seatService.getAllSeatsFromHall(hall.getId());
-        seats = seats.stream().filter(m -> m.getHall() == hall.getId()).toList();
+        seats = new ArrayList<>(seats.stream()
+                .filter(m -> m.getHall() == hall.getId())
+                .toList());
         assertTrue(domainSeats.size() == seats.size() && seats.containsAll(domainSeats));
     }
+
+
 }
