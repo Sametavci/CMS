@@ -25,12 +25,12 @@ public class AuthService implements ITicketClerkRepository{
 
     @Override
     public List<TicketClerk> findAll() {
-        return List.of();
+        return jpaRepository.findAll();
     }
 
     @Override
     public Optional<TicketClerk> findById(Long aLong) {
-        return Optional.empty();
+        return jpaRepository.findById(aLong);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class AuthService implements ITicketClerkRepository{
 
     @Override
     public void deleteById(Long aLong) {
-
+        jpaRepository.deleteById(aLong);
     }
 
     @Override

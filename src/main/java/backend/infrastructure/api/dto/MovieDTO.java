@@ -14,4 +14,5 @@ public class MovieDTO extends BaseDTO {
     private String genre;
     private int duration;
     private double price;
+    private String imgUrl;
 }

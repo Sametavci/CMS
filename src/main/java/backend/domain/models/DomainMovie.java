@@ -1,8 +1,6 @@
 package backend.domain.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +8,15 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Getter
+@Setter
 public class DomainMovie extends DomainBase {
 
     private String title;
     private String genre;
     private Integer duration;
     private Double price;
+    private String imgUrl;
+
 
 }
