@@ -45,7 +45,7 @@ public class AuthService implements ITicketClerkRepository{
 
     @Override
     public TicketClerk update(TicketClerk dto, Long aLong) {
-        return null;
+        return jpaRepository.save(dto);
     }
 
 }

@@ -102,7 +102,8 @@ public class TicketClerkController {
             check = true;
         }
         TicketClerk ticketClerk = new TicketClerk();
-        ticketClerk.setPassword(dto.getPassword());
+        ticketClerk.setId(id);
+        ticketClerk.setPassword(passwordEncoder.encode(dto.getPassword()));
         ticketClerk.setEmail(dto.getEmail());
         TicketClerk updatedEntity = service.update(ticketClerk, id);
         EntityModel<TicketClerk> entityModel = EntityModel.of(
