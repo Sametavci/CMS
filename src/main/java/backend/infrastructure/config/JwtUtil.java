@@ -17,7 +17,8 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private String secret = "ASDJKSADSADSAASDJKSADSADSAASDJKSADSADSA"; // en az 256 bit olmalı
+    @Value("${APP_JWT_SECRET}")
+    private String secret;
     private SecretKey key;
 
     @PostConstruct
