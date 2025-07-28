@@ -19,6 +19,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
@@ -43,8 +45,27 @@ public class AuthController {
         }
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
-        final String token = jwtUtil.generateToken(userDetails.getUsername());
 
-        return ResponseEntity.ok(new AuthResponse(userDetails.getUsername(),token, "Ticket Clerk"));
+        Optional<TicketClerk> userOpt = authService.findByUsername(request.getEmail());
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Kullanıcı bulunamadı");
+        }
+
+        TicketClerk user = userOpt.get();
+        String role = user.getRole();
+
+        String token = jwtUtil.generateToken(user.getEmail(), role);
+
+        System.out.println("Generated Token: " + token);
+
+        AuthResponse response = new AuthResponse(
+                user.getId(),
+                user.getEmail(),
+                token,
+                role
+        );
+
+        return ResponseEntity.ok(response);
     }
+
 }

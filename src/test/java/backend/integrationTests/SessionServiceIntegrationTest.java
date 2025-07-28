@@ -73,6 +73,24 @@ public class SessionServiceIntegrationTest {
         }
     }
 
+    @AfterEach
+    public void tearDown() {
+        for (DomainSession session : iSessionRepository.findAll()) {
+            iSessionRepository.deleteById(session.getId());
+        }
+
+        for (DomainMovie movie : iMovieRepository.findAll()) {
+            iMovieRepository.deleteById(movie.getId());
+        }
+
+        for (DomainHall hall : iHallRepository.findAll()) {
+            iHallRepository.deleteById(hall.getId());
+        }
+
+        sessions.clear();
+        movieIds.clear();
+    }
+
     @Test
     public void TestGetAllSessionsFromHall(){
         List<Long> sessionIds = sessionService.getAllSessionsFromHall(hall.getId())
@@ -102,23 +120,5 @@ public class SessionServiceIntegrationTest {
     }
 
 
-    @AfterEach
-    public void tearDown() {
-        for (DomainSession session : iSessionRepository.findAll()) {
-            iSessionRepository.deleteById(session.getId());
-        }
 
-        for (DomainMovie movie : iMovieRepository.findAll()) {
-            iMovieRepository.deleteById(movie.getId());
-        }
-
-        for (DomainHall hall : iHallRepository.findAll()) {
-            iHallRepository.deleteById(hall.getId());
-        }
-
-        sessions.clear();
-        movieIds.clear();
-
-        System.out.println("Test verileri temizlendi!");
-    }
 }

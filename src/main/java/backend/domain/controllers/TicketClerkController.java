@@ -55,16 +55,27 @@ public class TicketClerkController {
     @PostMapping()
     public ResponseEntity<String> register(@RequestBody AuthRequest request) {
         if (service.findByUsername(request.getEmail()).isPresent()) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("There is a already ticket clerk");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("There is already a ticket clerk");
         }
-
         TicketClerk user = new TicketClerk();
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        String role;
+        if (request.getRole() != null) {
+            role = request.getRole();
+        } else if (request.getEmail().endsWith("@cms-admin.com")) {
+            role = "ADMIN";
+        } else {
+            role = "TICKET_CLERK";
+        }
+        user.setRole(role);
+
         service.save(user);
 
         return ResponseEntity.ok("Registration Successfully!");
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {

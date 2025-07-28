@@ -6,6 +6,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -25,6 +26,7 @@ public abstract class BaseController<T extends DomainBase, ID extends Serializab
     }
 
     @GetMapping()
+    @PreAuthorize("hasRole('ADMIN') || hasRole('TICKET_CLERK')")
     public CollectionModel<EntityModel<T>> findAll() {
         List<EntityModel<T>> entityModels = service.findAll()
                 .stream()
@@ -36,6 +38,7 @@ public abstract class BaseController<T extends DomainBase, ID extends Serializab
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') || hasRole('TICKET_CLERK')")
     public EntityModel<T> findById(@PathVariable ID id) {
         T entity = service.findById(id).orElseThrow(
                 () -> new RuntimeException("Entity with that id couldnt find " + id)
@@ -47,6 +50,7 @@ public abstract class BaseController<T extends DomainBase, ID extends Serializab
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN') || hasRole('TICKET_CLERK')")
     public ResponseEntity<T> save(@RequestBody T dto) {
         T savedDto = service.save(dto);
         URI location = ServletUriComponentsBuilder
@@ -58,6 +62,7 @@ public abstract class BaseController<T extends DomainBase, ID extends Serializab
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') || hasRole('TICKET_CLERK')")
     public ResponseEntity<Void> deleteById(@PathVariable ID id) {
         service.deleteById(id);
         return (ResponseEntity<Void>) getResponseQuery();
@@ -75,6 +80,7 @@ public abstract class BaseController<T extends DomainBase, ID extends Serializab
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') || hasRole('TICKET_CLERK')")
     public ResponseEntity<?> update(@RequestBody T dto, @PathVariable ID id){
         boolean check = false;
         if(service.findById(id).isPresent()){

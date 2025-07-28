@@ -23,7 +23,6 @@ public class DatabaseIntegrationTest {
     @AfterEach
     void tearDown() {
         postgreSQLContainer.stop();
-        System.out.println("Test veritabanı kapatıldı.");
     }
 
     @Test

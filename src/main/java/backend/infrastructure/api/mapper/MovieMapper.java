@@ -18,7 +18,6 @@ public class MovieMapper implements BaseMapper<DomainMovie, MovieDTO> {
         movieDTO.setTitle(entity.getTitle());
         movieDTO.setGenre(entity.getGenre());
         movieDTO.setDuration(entity.getDuration());
-        movieDTO.setPrice(entity.getPrice());
         return movieDTO;
     }
 
@@ -29,7 +28,6 @@ public class MovieMapper implements BaseMapper<DomainMovie, MovieDTO> {
         movieEntity.setTitle(dto.getTitle());
         movieEntity.setGenre(dto.getGenre());
         movieEntity.setDuration(dto.getDuration());
-        movieEntity.setPrice(dto.getPrice());
         return movieEntity;
     }
 }

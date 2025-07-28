@@ -62,9 +62,7 @@ public class SeatServiceIntegrationTest {
         for (DomainHall hall : iHallRepository.findAll()) {
             iHallRepository.deleteById(hall.getId());
         }
-        seats.clear();
 
-        System.out.println("Seat ve Hall test verileri temizlendi!");
     }
 
     @Test

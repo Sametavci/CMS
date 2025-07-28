@@ -17,7 +17,6 @@ public class MovieMapper implements BaseMapper<Movie, DomainMovie> {
         movie.setTitle(domain.getTitle());
         movie.setGenre(domain.getGenre());
         movie.setDuration(domain.getDuration());
-        movie.setPrice(domain.getPrice());
         movie.setImgUrl(domain.getImgUrl());
         return movie;
     }
@@ -30,7 +29,6 @@ public class MovieMapper implements BaseMapper<Movie, DomainMovie> {
         domain.setTitle(entity.getTitle());
         domain.setGenre(entity.getGenre());
         domain.setDuration(entity.getDuration());
-        domain.setPrice(entity.getPrice());
         domain.setCreatedAt(entity.getCreatedAt());
         domain.setUpdatedAt(entity.getUpdatedAt());
         domain.setImgUrl(entity.getImgUrl());
@@ -41,7 +39,6 @@ public class MovieMapper implements BaseMapper<Movie, DomainMovie> {
         movieEntity.setTitle(dto.getTitle());
         movieEntity.setGenre(dto.getGenre());
         movieEntity.setDuration(dto.getDuration());
-        movieEntity.setPrice(dto.getPrice());
         movieEntity.setUpdatedAt(LocalDateTime.now());
         movieEntity.setImgUrl(dto.getImgUrl());
         return movieEntity;

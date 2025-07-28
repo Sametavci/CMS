@@ -15,7 +15,6 @@ public class DomainMovie extends DomainBase {
     private String title;
     private String genre;
     private Integer duration;
-    private Double price;
     private String imgUrl;
 
 

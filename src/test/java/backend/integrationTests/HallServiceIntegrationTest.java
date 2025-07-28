@@ -73,7 +73,6 @@ class HallServiceIntegrationTest {
         }
 
         list.clear();
-        System.out.println("Hall ve Seat test verileri temizlendi!");
     }
     @Test
     void testIsAllSeatsFullByHallId_WithRealDatabase() {

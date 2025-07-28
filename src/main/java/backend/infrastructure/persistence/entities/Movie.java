@@ -16,7 +16,6 @@ public class Movie extends BaseEntity {
     private String title;
     private String genre;
     private Integer duration;
-    private Double price;
     private String imgUrl;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)

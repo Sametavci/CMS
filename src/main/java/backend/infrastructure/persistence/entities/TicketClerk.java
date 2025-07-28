@@ -1,10 +1,10 @@
 package backend.infrastructure.persistence.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.*;
 
 @Entity
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,4 +12,5 @@ import lombok.*;
 public class TicketClerk extends BaseEntity {
     private String email;
     private String password;
+    private String role;
 }

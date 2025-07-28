@@ -2,6 +2,8 @@ package backend.domain.controllers;
 
 import backend.application.services.MovieService;
 import backend.domain.models.DomainMovie;
+import backend.infrastructure.persistence.entities.Movie;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

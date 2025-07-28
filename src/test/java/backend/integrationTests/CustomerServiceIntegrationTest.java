@@ -47,8 +47,6 @@ public class CustomerServiceIntegrationTest {
         }
 
         customers.clear();
-
-        System.out.println("Customer test verileri temizlendi!");
     }
 
     @Test
