@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IFeedbackRepository extends BaseRepository<Feedback, Long>{
+
+    public Long getCount();
 }

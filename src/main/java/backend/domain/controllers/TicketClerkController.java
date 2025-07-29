@@ -78,9 +78,8 @@ public class TicketClerkController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+    public void deleteById(@PathVariable Long id) {
         service.deleteById(id);
-        return (ResponseEntity<Void>) getResponseQuery();
     }
 
     public ResponseEntity<?> getResponseQuery() {

@@ -40,4 +40,9 @@ public class FeedbackService implements IFeedbackRepository {
     public Feedback update(Feedback dto, Long aLong) {
         return repository.save(dto);
     }
+
+    @Override
+    public Long getCount() {
+        return repository.count();
+    }
 }

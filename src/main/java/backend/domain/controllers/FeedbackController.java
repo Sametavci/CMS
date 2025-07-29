@@ -74,6 +74,11 @@ public class FeedbackController {
         return (ResponseEntity<Void>) getResponseQuery();
     }
 
+    @GetMapping("/count")
+    public Long getCount(){
+        return service.getCount();
+    }
+
     public ResponseEntity<?> getResponseQuery() {
         String requestedValue = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().getPath();
         while (requestedValue.charAt(requestedValue.length() - 1) != '/') {
@@ -85,5 +90,6 @@ public class FeedbackController {
                 .toUri();
         return ResponseEntity.noContent().location(uri).build();
     }
+
 }
 
