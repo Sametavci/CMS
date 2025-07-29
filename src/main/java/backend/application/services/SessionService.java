@@ -1,10 +1,10 @@
 package backend.application.services;
 
-import backend.domain.models.DomainHall;
-import backend.domain.models.DomainSeat;
+import backend.domain.models.*;
+import backend.domain.ports.repositorys.ICustomerRepository;
+import backend.domain.ports.repositorys.IReservationRepository;
 import backend.domain.ports.repositorys.ISeatRepository;
 import backend.domain.ports.repositorys.ISessionRepository;
-import backend.domain.models.DomainSession;
 import backend.infrastructure.persistence.entities.Seat;
 import backend.infrastructure.persistence.entities.Session;
 import jakarta.transaction.Transactional;
@@ -18,10 +18,14 @@ import java.util.Optional;
 public class SessionService extends BaseService<DomainSession, Long> {
     private final ISessionRepository sessionRepository;
 private final ISeatRepository seatRepository;
-    public SessionService(ISessionRepository sessionRepository, ISeatRepository seatRepository) {
+private ICustomerRepository customerRepository;
+private IReservationRepository reservationRepository;
+    public SessionService(ISessionRepository sessionRepository, ISeatRepository seatRepository, ICustomerRepository customerRepository,IReservationRepository reservationRepository) {
         super(sessionRepository);
         this.sessionRepository = sessionRepository;
         this.seatRepository = seatRepository;
+        this.customerRepository=customerRepository;
+        this.reservationRepository=reservationRepository;
     }
 
 
@@ -62,6 +66,28 @@ private final ISeatRepository seatRepository;
             seatRepository.save(seat);
         }
     }
+    @Transactional
+    public void reserveSeats(Long sessionId, List<Long> seatIds, Long customerId) {
+        DomainSession session = sessionRepository.findById(sessionId)
+                .orElseThrow(() -> new RuntimeException("Session not found"));
+
+        List<DomainSeat> seats = seatRepository.findAllById(seatIds);
+
+        for (DomainSeat seat : seats) {
+            seat.setBooked(true);
+            seatRepository.save(seat);
+
+            DomainReservation reservation = new DomainReservation();
+            reservation.setSeat(seat.getId());
+            reservation.setSession(session.getId());
+
+
+            reservationRepository.save(reservation);
+            seatRepository.save(seat);
+        }
+
+    }
+
 
 
 

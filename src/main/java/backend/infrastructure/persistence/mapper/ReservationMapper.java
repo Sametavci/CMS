@@ -28,7 +28,6 @@ public class ReservationMapper implements BaseMapper<Reservation, DomainReservat
         if (domain == null) return null;
         Reservation reservation = new Reservation();
         reservation.setId(domain.getId());
-        reservation.setCustomer(iCustomerJpaRepository.findById(domain.getCustomer()).orElseThrow());
         reservation.setSession(iSessionJpaRepository.findById(domain.getSession()).orElseThrow());
         reservation.setSeat(iSeatJpaRepository.findById(domain.getSeat()).orElseThrow());
         return reservation;
@@ -42,13 +41,11 @@ public class ReservationMapper implements BaseMapper<Reservation, DomainReservat
         domain.setCreatedAt(entity.getCreatedAt());
         domain.setUpdatedAt(entity.getUpdatedAt());
         domain.setSession(entity.getSession().getId());
-        domain.setCustomer(entity.getCustomer().getId());
         domain.setSeat(entity.getSeat().getId());
         return domain;
     }
     @Override
     public Reservation update(Reservation entity, DomainReservation dto) {
-        entity.setCustomer(iCustomerJpaRepository.findById(dto.getCustomer()).orElseThrow());
         entity.setSeat(iSeatJpaRepository.findById(dto.getSeat()).orElseThrow());
         entity.setSession(iSessionJpaRepository.findById(dto.getSession()).orElseThrow());
         entity.setUpdatedAt(LocalDateTime.now());
