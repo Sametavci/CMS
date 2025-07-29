@@ -1,5 +1,6 @@
 package backend.infrastructure.persistence.adapter;
 
+import backend.domain.models.DomainHall;
 import backend.domain.models.DomainSeat;
 import backend.domain.ports.repositorys.ISessionRepository;
 import backend.infrastructure.persistence.entities.Seat;
@@ -72,4 +73,6 @@ public class SessionRepositoryAdapter implements ISessionRepository {
     public List<DomainSession> getAllSessionsFromMovie(Long movieId){
         return findAll().stream().filter(m -> m.getMovie() == movieId).toList();
     }
+
+
 }

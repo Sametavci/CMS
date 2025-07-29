@@ -5,5 +5,8 @@ import backend.domain.models.DomainSeat;
 import java.util.List;
 
 public interface ISeatRepository extends BaseRepository<DomainSeat, Long> {
-    public List<DomainSeat> getAllSeatsFromHall(Long hallId);
+        List<DomainSeat> getAllSeatsFromHall(Long hallId);
+    void saveAll(List<DomainSeat> seats);
+    List<DomainSeat> findAllById(List<Long> ids);
+
 }

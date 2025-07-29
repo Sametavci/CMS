@@ -35,7 +35,7 @@ class SessionServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        movie = new DomainMovie("Interstellar", "Sci-Fi", 180, 10.0);
+        movie = new DomainMovie("Interstellar", "Sci-Fi", 180, "10.0");
         hall = new DomainHall("Hall 1", 50, "IMAX");
         session = new DomainSession(LocalDateTime.of(2024, 2, 12, 18, 0),
                 movie.getId(), hall.getId(), 10.0);

@@ -44,6 +44,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/ticket-clerks").permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN") // dikkat: hasRole() kullanıyorsan ROLE_ prefix gerekir
                         .requestMatchers("/api/clerk/**").hasRole("TICKET_CLERK")
+                        .requestMatchers("/api/movies/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

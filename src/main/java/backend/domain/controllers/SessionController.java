@@ -4,8 +4,10 @@ import backend.application.services.SessionService;
 import backend.domain.models.DomainCustomer;
 import backend.domain.models.DomainSeat;
 import backend.domain.models.DomainSession;
+import backend.infrastructure.persistence.entities.Seat;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +27,11 @@ public class SessionController extends BaseController<DomainSession, Long> {
         this.sessionService = sessionService;
     }
 
+    @GetMapping("/{id}/seats")
+    public ResponseEntity<List<DomainSeat>> getSeatsBySessionId(@PathVariable Long id) {
+        List<DomainSeat> seats = sessionService.getSeatsBySessionId(id);
+        return ResponseEntity.ok(seats);
+    }
     @GetMapping("/{id}/session/end")
     public ResponseEntity<LocalDateTime> endTimeBySessionId(@PathVariable("id") Long id) {
         return ResponseEntity.ok(sessionService.endTimeBySessionId(id));
@@ -50,6 +57,22 @@ public class SessionController extends BaseController<DomainSession, Long> {
                 ))
                 .toList();
         return CollectionModel.of(entityModels, linkTo(methodOn(getControllerClass()).findAll()).withRel("all-entities"));
+    }
+    @PostMapping("/{sessionId}/reserve")
+    public ResponseEntity<?> reserveSeats(
+            @PathVariable Long sessionId,
+            @RequestBody List<Long> seatIds) {
+
+        System.out.println("🔵 [RESERVE] SessionID: " + sessionId + ", seatIds: " + seatIds);
+
+        try {
+            sessionService.reserveSeats(sessionId, seatIds);
+            return ResponseEntity.ok().body("Rezervasyon başarılı");
+        } catch (Exception e) {
+            System.out.println("❌ Rezervasyon hatası: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @Override

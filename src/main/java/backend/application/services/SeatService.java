@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class SeatService extends BaseService<DomainSeat, Long> {
     private final ISeatRepository seatRepository;
@@ -15,5 +14,8 @@ public class SeatService extends BaseService<DomainSeat, Long> {
         super(seatRepository);
         this.seatRepository = seatRepository;
     }
-    public List<DomainSeat> getAllSeatsFromHall(Long hallId){ return seatRepository.getAllSeatsFromHall(hallId); }
+
+    public List<DomainSeat> getAllSeatsFromHall(Long hallId) {
+        return seatRepository.getAllSeatsFromHall(hallId);
+    }
 }
